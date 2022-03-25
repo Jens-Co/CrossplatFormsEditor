@@ -1,25 +1,22 @@
 <template>
     <div id="app" class="container">
         <form>
-			<div class="forms" style="float:left;margin-right:10px;">
+			<div class="forms">
 
 				<div>
-					<label for="formname">Form Name </label>
-					<input id="formname" type="text" v-model="form.formName">
+					<input id="formname" type="text" v-model="form.formName" placeholder="Form Name">
 				</div>
 
 				<div>
-					<label for="formtitle">Form Title </label>
-					<input id="formtitle" type="text" v-model="form.formtitle">
+					<input id="formtitle" type="text" v-model="form.formtitle" placeholder="Form Title">
 				</div>
 
 				<div>
-					<label for="formcontent">Form Content </label>
-					<input id="formcontent" type="text" v-model="form.formcontent">
+					<input id="formcontent" type="text" v-model="form.formcontent" placeholder="Form Content">
 				</div>
 
 			</div>
-            <div class="form-buttons" style="float:left;margin-right:10px;">
+            <div class="form-buttons">
                 <div class="button-row" v-for="(button, index) in formButtons" :key="index">
                     <div class="button-group col-md-6">
 
@@ -29,18 +26,16 @@
                         </span>
 
 						<div>
-							<label for="buttontext">Button Text</label>
 							<input id="buttontext" v-model="button.text" :name="`formButtons[${index}][text]`" type="text" class="form-control" placeholder="Button Text">
 						</div>
 
 						<div>
-							<label for="buttonurl">Image URL</label>
 							<input id="buttonurl" v-model="button.image" :name="`formButtons[${index}][image]`" type="text" class="form-control" placeholder="Button Image URL">
 						</div>
 
 						<div>
-							<label for="buttonactiontype">Action-type:</label>
 								<select id="buttonactiontype" v-model="button.actiontype">
+									<option value="" disabled selected hidden>Select actiontype</option>
 									<option value="server">server</option>
 									<option value="command">command</option>
 									<option value="form">form</option>
@@ -48,7 +43,6 @@
 						</div>	
 
 						<div>
-							<label for="buttonaction">Action</label>
 							<input id="buttonaction" v-model="button.action" :name="`formButtons[${index}][action]`" type="text" class="form-control" placeholder="Button Action">
 						</div>
 

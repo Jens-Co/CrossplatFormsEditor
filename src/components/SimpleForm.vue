@@ -1,17 +1,25 @@
 <template>
     <div id="app" class="container">
         <form>
+			<div class="forms" style="float:left;margin-right:10px;">
 
-            <label>Form Name: </label>
-            <input type="text" v-model="formname">
+				<div>
+					<label for="formname">Form Name </label>
+					<input id="formname" type="text" v-model="form.formName">
+				</div>
 
-            <label>Form Title: </label>
-            <input type="text" v-model="formtitle">
+				<div>
+					<label for="formtitle">Form Title </label>
+					<input id="formtitle" type="text" v-model="form.formtitle">
+				</div>
 
-            <label>Form Content: </label>
-            <input type="text" v-model="formcontent">
+				<div>
+					<label for="formcontent">Form Content </label>
+					<input id="formcontent" type="text" v-model="form.formcontent">
+				</div>
 
-            <div class="form-buttons">
+			</div>
+            <div class="form-buttons" style="float:left;margin-right:10px;">
                 <div class="button-row" v-for="(button, index) in formButtons" :key="index">
                     <div class="button-group col-md-6">
 
@@ -20,21 +28,29 @@
                             &times;
                         </span>
 
-                        <label>Button Text</label>
-                        <input v-model="button.text" :name="`formButtons[${index}][text]`" type="text" class="form-control" placeholder="Button Text">
-                    
-                        <label>Button Image</label>
-                        <input v-model="button.image" :name="`formButtons[${index}][image]`" type="text" class="form-control" placeholder="Button Image URL">
+						<div>
+							<label for="buttontext">Button Text</label>
+							<input id="buttontext" v-model="button.text" :name="`formButtons[${index}][text]`" type="text" class="form-control" placeholder="Button Text">
+						</div>
 
-                        <label>Action-type:</label>
-                            <select v-model="actiontype">
-                                <option value="server">server</option>
-                                <option value="command">command</option>
-                                <option value="form">form</option>
-                            </select>
+						<div>
+							<label for="buttonurl">Image URL</label>
+							<input id="buttonurl" v-model="button.image" :name="`formButtons[${index}][image]`" type="text" class="form-control" placeholder="Button Image URL">
+						</div>
 
-                        <label>Button Action</label>
-                        <input v-model="button.action" :name="`formButtons[${index}][action]`" type="text" class="form-control" placeholder="Button Action">
+						<div>
+							<label for="buttonactiontype">Action-type:</label>
+								<select id="buttonactiontype" v-model="button.actiontype">
+									<option value="server">server</option>
+									<option value="command">command</option>
+									<option value="form">form</option>
+								</select>
+						</div>	
+
+						<div>
+							<label for="buttonaction">Action</label>
+							<input id="buttonaction" v-model="button.action" :name="`formButtons[${index}][action]`" type="text" class="form-control" placeholder="Button Action">
+						</div>
 
                     </div>
                 </div>
@@ -43,6 +59,9 @@
             <div class="button-group">
                 <button @click="addButton" type="button" class="btn btn-secondary">Add button</button>
             </div>
+			<div class="button-group">
+                <button @click="createConfig" type="button" class="btn btn-secondary">Generate Config</button>
+            </div>
             <hr>
 
         </form>
@@ -50,9 +69,15 @@
 </template>
 
 <script>
+const YAML = require('yaml');
 export default {
     name: "App",
     data: () => ({
+			form: [{
+				formname: "",
+				formtitle: "",
+				formcontent: ""
+			}],
             formButtons: [{
                 text: "",
                 image: "",
@@ -69,11 +94,20 @@ export default {
                 action: ""
                 })
             },
-            deleteButton (index) {
-                this.formButtons.splice(index,1)
-            },
-        }
+        deleteButton (index) {
+            this.formButtons.splice(index,1)
+        },
+		createConfig () {
+
+			var employees = [this.form, this.formButtons]
+
+			const doc = new YAML.Document()
+			doc.contents = employees
+			console.log(doc.toString())
+
+		}
     }
+}
 </script>
 
 <style scoped>

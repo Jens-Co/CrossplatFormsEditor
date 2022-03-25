@@ -1,18 +1,12 @@
 <template>
-  <SimpleForm msg="Welcome to Your Vue.js App"/>
+	<div id="app">
+		<div id="nav">
+			<router-link to="/">Home</router-link> |
+			<router-link to="/simpleform">SimpleForm</router-link>
+		</div>
+		<router-view />
+	</div>
 </template>
-
-
-<script>
-import SimpleForm from './components/SimpleForm.vue'
-
-export default {
-  name: 'App',
-  components: {
-    SimpleForm
-  }
-}
-</script>
 
 <style>
 #app {

@@ -17,6 +17,7 @@ button, input, select, textarea {
 	margin-bottom: 5px;
 	background-color: #454955;
 	border-radius: 5px;
+	border-width: 0px;
 }
 label {
     clear:left;

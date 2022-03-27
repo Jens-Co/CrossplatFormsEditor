@@ -1,6 +1,7 @@
 <template>
 <div id="app" class="home">
-	<h1>hello</h1>
+	<img src="../assets/crossplatForms.svg" width="500" height="200">
+
 </div>
    
 </template>

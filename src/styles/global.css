@@ -1,35 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+body {
+	background-color: #2e3137;
+}
+
+#app {
+	color: lightgray;
 }
 
 button, input, select, textarea {
     font-family: inherit;
     font-size: 100%;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	margin-bottom: 5px;
+	background-color: #454955;
+	border-radius: 5px;
+}
+label {
+    clear:left;
+    text-align:right;
+}
+button, select, textarea {
+	color: #c5c5c5;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #c5c5c5;
+	opacity: 1; /* Firefox */
+  }
+
+button:hover {
+	color: gray;
+}
+span {
+	color: lightgray;
 }
 
 a, a:link, a:visited, a:hover, a:active{
     text-decoration: none;
     color: inherit;
 }
+
 .container {
-	background-color: #acacac;
-	border: 2px solid black;
-	border-radius: 5px;
-	width: 300px;
-	text-align: center;
-	max-width: 500px;
 	margin: auto;
+	border: 3px solid;
+	padding: 10px;
+	padding-top: 10px;
+	padding-bottom: 30px;
+	border-radius: 10px;
+	background-color: #22262b;
+	width: 500px;
+	
 }
 
-.forms {
-	display:flex;
-	flex-direction:column;
-}
+
+
 
 

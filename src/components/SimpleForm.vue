@@ -6,15 +6,15 @@
 					<h1>Simple Form</h1>
 					<div>
 						<label for="formname"></label>
-						<input id="formname" type="text" v-model="form.formName" placeholder="Form Name">
+						<input id="formname" type="text" v-model="formname" placeholder="Form Name">
 					</div>
 					<div>
 						<label for="formtitle"></label>
-						<input id="formtitle" type="text" v-model="form.formtitle" placeholder="Form Title">
+						<input id="formtitle" type="text" v-model="formtitle" placeholder="Form Title">
 					</div>
 					<div>
 						<label for="formcontent"></label>
-						<input id="formcontent" type="text" v-model="form.formcontent" placeholder="Form Content">
+						<input id="formcontent" type="text" v-model="formcontent" placeholder="Form Content">
 					</div>
 				</div>
 			
@@ -36,7 +36,7 @@
 							<select id="buttonactiontype" v-model="button.actiontype">
 								<option value="" disabled selected hidden>Select actiontype</option>
 								<option value="server">server</option>
-								<option value="command">command</option>
+								<option value="commands">commands</option>
 								<option value="form">form</option>
 							</select>
 							<label for="buttonaction"></label><br>
@@ -65,11 +65,10 @@ const YAML = require('yaml');
 export default {
     name: "App",
     data: () => ({
-			form: [{
-				formname: "",
-				formtitle: "",
-				formcontent: ""
-			}],
+			formname: [""],
+			formtitle : [""],
+			formcontent: [""],
+
             formButtons: [{
                 text: "",
                 image: "",
@@ -90,13 +89,50 @@ export default {
             this.formButtons.splice(index,1)
         },
 		createConfig () {
+			// Full buttons obj array
+			var buttonData = []
 
-			var employees = [this.form, this.formButtons]
+			// Button loop for array of obj
+			for(var i = 0; i < this.formButtons.length; i++) {
+
+				// All button obj
+				var buttonObj = this.formButtons[i]
+				var getButtonText = buttonObj["text"]
+				var getButtonImg =  buttonObj["image"]
+				var getButtonAction = buttonObj["action"]
+				var getButtonType = buttonObj["actiontype"]
+
+				var commandArray = [getButtonType,[getButtonAction]]
+
+				// Json array of button obj
+				var buttonArray =  [{
+					text: getButtonText,
+					image: getButtonImg,
+					actions: commandArray
+				}]
+				// Push each Json array into a full buttons obj array
+			buttonData.push(buttonArray)
+			}
+
+			// Create full Json obj
+			var formArray = [this.formname,
+				[{ 
+					"type": "simple_form", 
+					"title": this.formtitle, 
+					"content": this.formcontent, 
+					"buttons": buttonData,
+				}]
+			]
+
+			// Convert Json form to YAML
+			var finalObj = formArray;		
+			var converting = [finalObj]
 			const doc = new YAML.Document()
-			doc.contents = employees
+			doc.contents = converting
 			console.log(doc.toString())
+			
 		}
-    }
+	}
 }
 </script>
 

@@ -49,13 +49,18 @@
 					<div class="button-group">
 						<button @click="addButton" type="button" class="btn btn-secondary">Add button</button>
 					</div>
-					<div class="button-group">
-						<button @click="createConfig" type="button" class="btn btn-secondary">Generate Config</button>
-					</div>
 				</div>
 			</div>
 
         </form>
+
+		<div class="button-group">
+			<button @click="createConfig" type="button" class="btn btn-secondary">Generate Config</button>
+		</div>
+
+		<div class="config">
+			<pre id="list" ></pre>
+		</div>
 
 	</div>
 </template>
@@ -102,34 +107,49 @@ export default {
 				var getButtonAction = buttonObj["action"]
 				var getButtonType = buttonObj["actiontype"]
 
-				var commandArray = [getButtonType,[getButtonAction]]
 
+				var action
+
+				if (getButtonType.indexOf('command') > -1) {
+					action = {
+						[getButtonType]: [getButtonAction]
+					}
+				} else {
+					action = {
+						[getButtonType] : getButtonAction
+					}
+					
+				}
+				
 				// Json array of button obj
-				var buttonArray =  [{
+				var buttonArray =  {
 					text: getButtonText,
 					image: getButtonImg,
-					actions: commandArray
-				}]
+					actions: action
+				}
 				// Push each Json array into a full buttons obj array
-			buttonData.push(buttonArray)
+				buttonData.push(buttonArray)
 			}
 
+			var formArray 
 			// Create full Json obj
-			var formArray = [this.formname,
+			formArray = {[this.formname] : 
 				[{ 
 					"type": "simple_form", 
 					"title": this.formtitle, 
 					"content": this.formcontent, 
 					"buttons": buttonData,
 				}]
-			]
+			}
 
-			// Convert Json form to YAML
-			var finalObj = formArray;		
-			var converting = [finalObj]
+			// Convert Json form to
+			var converting = formArray
 			const doc = new YAML.Document()
 			doc.contents = converting
-			console.log(doc.toString())
+			var str = doc.toString().replace(/- -/g,"-")
+			document.getElementById("list").innerHTML = str;
+			console.log(str)
+			
 			
 		}
 	}

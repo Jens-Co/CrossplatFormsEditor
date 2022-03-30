@@ -107,7 +107,6 @@ export default {
 				var getButtonAction = buttonObj["action"]
 				var getButtonType = buttonObj["actiontype"]
 
-
 				var action
 
 				if (getButtonType.indexOf('command') > -1) {
@@ -149,7 +148,6 @@ export default {
 			var str = doc.toString().replace(/- -/g,"-")
 			document.getElementById("list").innerHTML = str;
 			console.log(str)
-			
 			
 		}
 	}

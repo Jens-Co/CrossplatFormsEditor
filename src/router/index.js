@@ -12,6 +12,12 @@ const routes = [
 		name: 'SimpleForm',
 		component: () =>
 		import('../components/SimpleForm.vue')
+	},
+	{
+		path: '/modalform',
+		name: 'ModalForm',
+		component: () =>
+		import('../components/ModalForm.vue')
 	}
 ]
 

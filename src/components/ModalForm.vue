@@ -14,8 +14,7 @@
 					</div>
 					<div>
 						<label for="modalformcontent"></label>
-				
-						<textarea v-model="formcontent" placeholder="Form Content"></textarea>
+						<textarea id="formcontent" v-model="formcontent" placeholder="Form Content" rows="4" cols="50"></textarea>
 					</div>
 					<div>
 						<label for="button1Text"></label>

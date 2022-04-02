@@ -35,6 +35,7 @@
 							<label for="butonactiontype"></label><br>
 							<select id="buttonactiontype" v-model="button.actiontype">
 								<option value="" disabled selected hidden>Select actiontype</option>
+								<option value="noaction">no action</option>
 								<option value="server">server</option>
 								<option value="commands">commands</option>
 								<option value="form">form</option>
@@ -125,6 +126,10 @@ export default {
 					text: getButtonText,
 					image: getButtonImg,
 					actions: action
+				}
+				
+				if (getButtonType.indexOf('noaction') > -1) {
+					delete buttonArray.actions
 				}
 				// Push each Json array into a full buttons obj array
 				buttonData.push(buttonArray)

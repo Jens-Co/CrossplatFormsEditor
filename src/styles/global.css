@@ -59,8 +59,24 @@ a, a:link, a:visited, a:hover, a:active{
 	background-color: #22262b;
 	width: 500px;
 }
+#modalformcontent {
+	height: 200px;
 
- .config {
+}
+#button1Text {
+	margin-top: 5%;
+}
+#button2Text {
+	margin-top: 5%;
+}
+
+#button1Text {
+	margin-bottom: -50%;
+}
+#button2Text {
+	margin-bottom: -50%;
+}
+.config {
 	background-color: #22262b;
 	color: #c5c5c5;
 	font-family: inherit;
@@ -78,7 +94,40 @@ a, a:link, a:visited, a:hover, a:active{
 	margin-top: 5%;
 	margin-left: auto;
 	margin-right: auto;
- }
+}
+.swiper {
+	width: 100%;
+	height: 100%;
+  }
+  
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #2e3137;
+
+  
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+  
+.swiper-slide img {
+	display: block;
+	width: 30%;
+	height: 30%;
+	object-fit: cover;
+}
+  
 
 
 

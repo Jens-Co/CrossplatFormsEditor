@@ -2,7 +2,8 @@
 	<div class="main" id="app">
 		<div id="nav">
 			<router-link to="/">Home</router-link> |
-			<router-link to="/simpleform">SimpleForm</router-link>
+			<router-link to="/simpleform">SimpleForm</router-link> |
+			<router-link to="/modalform">ModalForm</router-link>
 		</div>
 		<router-view />
 	</div>
